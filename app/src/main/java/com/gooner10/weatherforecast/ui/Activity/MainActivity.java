@@ -19,8 +19,6 @@ import android.widget.Toast;
 
 import com.gooner10.weatherforecast.R;
 import com.gooner10.weatherforecast.ui.Adapter.TabViewAdapter;
-import com.gooner10.weatherforecast.ui.Fragments.BookMarkFragment;
-import com.gooner10.weatherforecast.ui.Fragments.DailyWeatherFragment;
 import com.gooner10.weatherforecast.ui.Fragments.TodayWeatherFragment;
 
 import butterknife.Bind;
@@ -31,8 +29,6 @@ public class MainActivity extends AppCompatActivity
 
     private String LOG_TAG = MainActivity.class.getSimpleName();
     private Fragment mTodayWeatherFragment = new TodayWeatherFragment();
-    private Fragment mNearbyFragment = new DailyWeatherFragment();
-    private Fragment mBookMarkFragment = new BookMarkFragment();
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -96,8 +92,6 @@ public class MainActivity extends AppCompatActivity
         if (mViewPager != null) {
             TabViewAdapter mTabViewAdapter = new TabViewAdapter(getSupportFragmentManager());
             mTabViewAdapter.addFragment(mTodayWeatherFragment, "Weather");
-//            mTabViewAdapter.addFragment(mNearbyFragment, "Nearby");
-//            mTabViewAdapter.addFragment(mBookMarkFragment, "BookMark");
             mViewPager.setAdapter(mTabViewAdapter);
         }
     }
@@ -140,19 +134,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_activity) {
+        if (id == R.id.nav_overview) {
             // Handle the camera action
             callToSnackBar("Activity");
 
-        } else if (id == R.id.nav_matches) {
+        } else if (id == R.id.nav_daily_forecast) {
             callToSnackBar("Matches");
-        } else if (id == R.id.nav_quick_match) {
+        } else if (id == R.id.nav_hourly_forecast) {
             callToSnackBar("Quick Match");
-        } else if (id == R.id.nav_messages) {
+        } else if (id == R.id.nav_map) {
             callToSnackBar("Messages");
-        } else if (id == R.id.nav_visitors) {
+        } else if (id == R.id.nav_about) {
             callToSnackBar("Visitors");
-        } else if (id == R.id.nav_likes) {
+        } else if (id == R.id.nav_contact) {
             callToSnackBar("Likes");
         }
 
