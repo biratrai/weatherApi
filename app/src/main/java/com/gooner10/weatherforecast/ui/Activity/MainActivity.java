@@ -53,10 +53,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
-//        mToolbar = binding.toolbar;
-
         // Bind all of the view
         ButterKnife.bind(this);
 
@@ -67,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "This is a Snackbar in action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -135,19 +131,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_overview) {
-            // Handle the camera action
-            callToSnackBar("Activity");
-
+            callToNavMenu("Activity");
         } else if (id == R.id.nav_daily_forecast) {
-            callToSnackBar("Matches");
+            callToNavMenu("Matches");
         } else if (id == R.id.nav_hourly_forecast) {
-            callToSnackBar("Quick Match");
+            callToNavMenu("Quick Match");
         } else if (id == R.id.nav_map) {
-            callToSnackBar("Messages");
+            callToNavMenu("Messages");
         } else if (id == R.id.nav_about) {
-            callToSnackBar("Visitors");
+            callToNavMenu("Visitors");
         } else if (id == R.id.nav_contact) {
-            callToSnackBar("Likes");
+            callToNavMenu("Likes");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -155,7 +149,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void callToSnackBar(String message) {
+    public void callToNavMenu(String message) {
         Toast.makeText(this, message + " clicked!", Toast.LENGTH_SHORT).show();
     }
 }
