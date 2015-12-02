@@ -13,6 +13,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_user_detail" />
+    <include layout="@layout/content_forecast_detail" />
 
 </android.support.design.widget.CoordinatorLayout>

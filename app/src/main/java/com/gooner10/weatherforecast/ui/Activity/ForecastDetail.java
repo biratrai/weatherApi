@@ -25,10 +25,13 @@ public class ForecastDetail extends AppCompatActivity {
     @Bind(R.id.weather_info)
     TextView mWeatherInfo;
 
+    @Bind(R.id.wind_speed_value)
+    TextView mWindSpeed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_detail);
+        setContentView(R.layout.activity_forecast_detail);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.content_toolbar);
         setSupportActionBar(toolbar);
@@ -45,14 +48,16 @@ public class ForecastDetail extends AppCompatActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Today's Weather");
 
-        mWeatherInfo.setText(dataModel.getTimezone());
+        // Setting the values to the detail view
+        mWeatherInfo.setText(dataModel.getCurrently().getTemperature());
+        mWindSpeed.setText(dataModel.getCurrently().getWindSpeed());
 
         // Floating Button with SnackBar
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.detail_fab_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "This is a Snack bar in action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

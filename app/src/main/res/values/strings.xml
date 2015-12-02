@@ -14,5 +14,6 @@
         condimentum, vel cursus justo consequat. Morbi finibus eros libero, vel placerat dolor laoreet vel. Praesent dictum ullamcorper pellentesque.
         Integer id auctor velit, nec semper est. Proin in nulla ullamcorper, euismod massa quis, vulputate sapien. Nunc varius eget purus et hendrerit.
         Nunc lobortis vulputate maximus. Morbi congue, purus quis varius volutpat, erat velit pulvinar nulla, ac iaculis arcu nisl in quam.</string>
-    <string name="weather_info">My self-summary</string>
+    <string name="weather_info">Temperature</string>
+    <string name="wind_speed">Wind Speed</string>
 </resources>
