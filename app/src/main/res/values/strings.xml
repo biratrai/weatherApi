@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Weather App</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_forecast_detail">Weather Detail</string>
+    <string name="user_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor eros et tempus dapibus.
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec cursus tortor eu eros
+        condimentum, vel cursus justo consequat. Morbi finibus eros libero, vel placerat dolor laoreet vel. Praesent dictum ullamcorper pellentesque.
+        Integer id auctor velit, nec semper est. Proin in nulla ullamcorper, euismod massa quis, vulputate sapien. Nunc varius eget purus et hendrerit.
+        Nunc lobortis vulputate maximus. Morbi congue, purus quis varius volutpat, erat velit pulvinar nulla, ac iaculis arcu nisl in quam.</string>
+    <string name="weather_info">My self-summary</string>
+</resources>
