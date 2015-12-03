@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gooner10.weatherforecast.EventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.Model.ForeCastApiModel;
 import com.gooner10.weatherforecast.R;
@@ -22,8 +23,8 @@ import de.greenrobot.event.EventBus;
 public class ForecastDetail extends AppCompatActivity {
     private ForeCastApiModel dataModel;
 
-    @Bind(R.id.weather_info)
-    TextView mWeatherInfo;
+    @Bind(R.id.weather_temp_value)
+    TextView mWeatherTempValue;
 
     @Bind(R.id.wind_speed_value)
     TextView mWindSpeed;
@@ -49,7 +50,7 @@ public class ForecastDetail extends AppCompatActivity {
         collapsingToolbar.setTitle("Today's Weather");
 
         // Setting the values to the detail view
-        mWeatherInfo.setText(dataModel.getCurrently().getTemperature());
+        mWeatherTempValue.setText(dataModel.getCurrently().getTemperature());
         mWindSpeed.setText(dataModel.getCurrently().getWindSpeed());
 
         // Floating Button with SnackBar
@@ -76,12 +77,12 @@ public class ForecastDetail extends AppCompatActivity {
 
     private void loadBackdrop() {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-//        Glide.with(ForecastDetail.this).load(dataModel.getPhoto_large())
-//                .crossFade()
-//                .centerCrop()
-//                .placeholder(R.drawable.image_loading)
-//                .error(R.drawable.test_profile)
-//                .into(imageView);
+        Glide.with(ForecastDetail.this).load(R.id.backdrop)
+                .crossFade()
+                .centerCrop()
+                .placeholder(R.drawable.background)
+                .error(R.drawable.background)
+                .into(imageView);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package com.gooner10.weatherforecast.ui.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.gooner10.weatherforecast.EventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.Extras.Constants;
+import com.gooner10.weatherforecast.Extras.ParseWeatherAPI;
 import com.gooner10.weatherforecast.Model.DailyTemp;
 import com.gooner10.weatherforecast.Model.ForeCastApiModel;
 import com.gooner10.weatherforecast.Network.VolleySingleton;
@@ -46,6 +50,7 @@ public class TodayWeatherFragment extends Fragment {
     private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
     private ForeCastApiModel foreCastApiModel;
+    private ParseWeatherAPI parseWeatherAPI = new ParseWeatherAPI();
 
     @Bind(R.id.recyclerViewMovie)
     RecyclerView mSearchRecyclerView;
@@ -79,7 +84,20 @@ public class TodayWeatherFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ForecastDetail.class);
-                getActivity().startActivity(intent);
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation((Activity) getActivity(),
+                                mWeatherIcon, // Starting view
+                                "profileWeather"); // The Shared Transition
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    getActivity().startActivity(intent, options.toBundle());
+                } else {
+                    getActivity().startActivity(intent);
+                }
+//                getActivity().startActivity(intent);
+
+
 
                 // Get and Post the event
                 EventBus.getDefault().postSticky(new OnItemClickEvent(foreCastApiModel));
@@ -96,6 +114,11 @@ public class TodayWeatherFragment extends Fragment {
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), dailyTempArrayListArrayList);
         mSearchRecyclerView.setAdapter(mTodayWeatherAdapter);
         return view;
+    }
+
+    private void getTheWeatherData() {
+        foreCastApiModel = parseWeatherAPI.JsonParser();
+        Log.d(LOG_TAG, "latitude: " + foreCastApiModel.getLatitude());
     }
 
     private void setTodayWeather() {

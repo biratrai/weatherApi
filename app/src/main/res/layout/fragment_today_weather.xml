@@ -40,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="4dp"
-                android:src="@drawable/undefined" />
+                android:src="@drawable/undefined"
+                android:transitionName="weatherImage" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -64,8 +65,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:padding="4dp"
-                    android:src="@drawable/fahrenheit"
-                    android:transitionName="weatherImage" />
+                    android:src="@drawable/fahrenheit" />
             </LinearLayout>
 
         </LinearLayout>
@@ -74,10 +74,10 @@
     <TextView
         android:id="@+id/MatchText"
         style="@style/secondaryText"
-        android:text="Daily Temperature"
-        android:gravity="center"
         android:layout_below="@+id/cardView_weather"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Daily Temperature" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewMovie"
