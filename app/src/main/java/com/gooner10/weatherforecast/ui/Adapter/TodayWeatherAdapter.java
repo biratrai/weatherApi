@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.gooner10.weatherforecast.Model.DailyTemp;
 import com.gooner10.weatherforecast.R;
+import com.gooner10.weatherforecast.WeatherUtils.RecyclerViewAnimUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapte
     public LayoutInflater layoutInflater;
     public Context mContext;
     public List<DailyTemp> mDailyTemp;
+    private int mPreviousPosition = 0;
 
     public TodayWeatherAdapter(Context mContext, List<DailyTemp> mDailyTemp) {
         layoutInflater = LayoutInflater.from(mContext);
@@ -32,6 +34,7 @@ public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapte
     public ViewHolderData onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.daily_weather_row, parent, false);
         ViewHolderData viewHolderData = new ViewHolderData(view);
+
         return viewHolderData;
     }
 
@@ -45,6 +48,11 @@ public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapte
         holder.mDateTextView.setText(mDailyDate);
         holder.mMinTempTextView.setText("Min Temperature: " + mDailyTemp.get(position).getApparentTemperatureMin());
         holder.mMaxTempTextView.setText("Max Temperature: " + mDailyTemp.get(position).getApparentTemperatureMax());
+
+        boolean flag = (position > mPreviousPosition);
+        RecyclerViewAnimUtils.animateSunblind(holder, flag);
+
+        mPreviousPosition = position;
     }
 
     @Override
