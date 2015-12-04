@@ -2,6 +2,7 @@
 This is a sample application to use the WeatherApi
 
 Libraries used:
+
 compile 'com.android.support:appcompat-v7:23.1.1'
 compile 'com.android.support:design:23.1.1'
 compile 'com.jakewharton:butterknife:7.0.1'
