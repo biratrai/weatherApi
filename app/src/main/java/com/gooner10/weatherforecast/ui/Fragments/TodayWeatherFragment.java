@@ -1,6 +1,5 @@
 package com.gooner10.weatherforecast.ui.Fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,7 +39,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,10 +83,11 @@ public class TodayWeatherFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ForecastDetail.class);
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) getActivity(),
+                        makeSceneTransitionAnimation(getActivity(),
                                 mWeatherIcon, // Starting view
                                 "profileWeather"); // The Shared Transition
 
+                // Check build version for the Transition to work
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     getActivity().startActivity(intent, options.toBundle());
                 } else {
@@ -108,7 +107,6 @@ public class TodayWeatherFragment extends Fragment {
 
         // Setting the Adapter
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), dailyTempArrayListArrayList);
-        mSearchRecyclerView.setItemAnimator(new SlideInUpAnimator());
         mSearchRecyclerView.setAdapter(mTodayWeatherAdapter);
         return view;
     }
