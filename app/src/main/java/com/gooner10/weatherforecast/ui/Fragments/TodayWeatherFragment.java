@@ -25,7 +25,6 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.gooner10.weatherforecast.EventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.Extras.Constants;
-import com.gooner10.weatherforecast.Extras.ParseWeatherAPI;
 import com.gooner10.weatherforecast.Model.DailyTemp;
 import com.gooner10.weatherforecast.Model.ForeCastApiModel;
 import com.gooner10.weatherforecast.Network.VolleySingleton;
@@ -41,6 +40,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +50,6 @@ public class TodayWeatherFragment extends Fragment {
     private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
     private ForeCastApiModel foreCastApiModel;
-    private ParseWeatherAPI parseWeatherAPI = new ParseWeatherAPI();
 
     @Bind(R.id.recyclerViewMovie)
     RecyclerView mSearchRecyclerView;
@@ -95,9 +94,6 @@ public class TodayWeatherFragment extends Fragment {
                 } else {
                     getActivity().startActivity(intent);
                 }
-//                getActivity().startActivity(intent);
-
-
 
                 // Get and Post the event
                 EventBus.getDefault().postSticky(new OnItemClickEvent(foreCastApiModel));
@@ -112,28 +108,12 @@ public class TodayWeatherFragment extends Fragment {
 
         // Setting the Adapter
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), dailyTempArrayListArrayList);
+        mSearchRecyclerView.setItemAnimator(new SlideInUpAnimator());
         mSearchRecyclerView.setAdapter(mTodayWeatherAdapter);
         return view;
     }
 
-    private void getTheWeatherData() {
-        foreCastApiModel = parseWeatherAPI.JsonParser();
-        Log.d(LOG_TAG, "latitude: " + foreCastApiModel.getLatitude());
-    }
-
     private void setTodayWeather() {
-//        Geocoder geocoder;
-//        List<Address> addresses = new ArrayList<>();
-//        geocoder = new Geocoder(getActivity(), Locale.getDefault());
-//        Log.d(LOG_TAG,"latitude "+foreCastApiModel.getLatitude());
-//        double latitude = Double.parseDouble(foreCastApiModel.getLatitude());
-//        double longitude = Double.parseDouble(foreCastApiModel.getLongitude());
-//        try {
-//            addresses = geocoder.getFromLocation(latitude, longitude, 1);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        String address = addresses.get(0).getAddressLine(0);
 
         // Fetch the Icon String and load Image
         String mWeatherIconString = foreCastApiModel.getDaily().getIcon();
@@ -145,7 +125,6 @@ public class TodayWeatherFragment extends Fragment {
         mSummary.setText(foreCastApiModel.getCurrently().getSummary());
 
         mTemp.setText(foreCastApiModel.getCurrently().getTemperature());
-//        Toast.makeText(getContext(), "Address " + address, Toast.LENGTH_SHORT).show();
     }
 
     private void loadImage(String mWeatherIconString) {
