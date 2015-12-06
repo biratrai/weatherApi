@@ -1,5 +1,6 @@
 package com.gooner10.weatherforecast.ui.Activity;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -18,11 +19,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.gooner10.weatherforecast.R;
+import com.gooner10.weatherforecast.databinding.ActivityMainBinding;
 import com.gooner10.weatherforecast.ui.Adapter.TabViewAdapter;
 import com.gooner10.weatherforecast.ui.Fragments.TodayWeatherFragment;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,31 +29,27 @@ public class MainActivity extends AppCompatActivity
     private String LOG_TAG = MainActivity.class.getSimpleName();
     private Fragment mTodayWeatherFragment = new TodayWeatherFragment();
 
-    @Bind(R.id.toolbar)
     Toolbar mToolbar;
-
-    @Bind(R.id.viewpager)
     ViewPager mViewPager;
-
-    @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
-
-    @Bind(R.id.fab)
     FloatingActionButton fab;
-
-    @Bind(R.id.nav_view)
     NavigationView navigationView;
-
-    @Bind(R.id.tabs)
     TabLayout mTabLayout;
+
+    ActivityMainBinding mainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         // Bind all of the view
-        ButterKnife.bind(this);
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mToolbar = mainBinding.appBar.toolbar;
+        mViewPager = mainBinding.appBar.contentMain.viewpager;
+        mDrawerLayout = mainBinding.drawerLayout;
+        fab = mainBinding.appBar.fab;
+        navigationView = mainBinding.navView;
+        mTabLayout = mainBinding.appBar.tabs;
 
         // Set Toolbar
         setSupportActionBar(mToolbar);

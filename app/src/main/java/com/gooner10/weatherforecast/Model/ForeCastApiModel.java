@@ -1,6 +1,17 @@
 package com.gooner10.weatherforecast.Model;
 
 public class ForeCastApiModel {
+    @Override
+    public String toString() {
+        return "ForeCastApiModel{" +
+                "latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", timezone='" + timezone + '\'' +
+                ", currently=" + currently +
+                ", daily=" + daily +
+                '}';
+    }
+
     String latitude;
     String longitude;
     String timezone;

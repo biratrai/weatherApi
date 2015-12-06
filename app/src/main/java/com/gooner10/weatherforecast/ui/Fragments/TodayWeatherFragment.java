@@ -1,6 +1,7 @@
 package com.gooner10.weatherforecast.ui.Fragments;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -12,56 +13,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
+import com.gooner10.weatherforecast.ApiWeatherService;
 import com.gooner10.weatherforecast.EventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.Extras.Constants;
 import com.gooner10.weatherforecast.Model.DailyTemp;
 import com.gooner10.weatherforecast.Model.ForeCastApiModel;
-import com.gooner10.weatherforecast.Network.VolleySingleton;
 import com.gooner10.weatherforecast.R;
+import com.gooner10.weatherforecast.WeatherContract;
+import com.gooner10.weatherforecast.WeatherPresenter;
+import com.gooner10.weatherforecast.databinding.FragmentTodayWeatherBinding;
 import com.gooner10.weatherforecast.ui.Activity.ForecastDetail;
 import com.gooner10.weatherforecast.ui.Adapter.TodayWeatherAdapter;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TodayWeatherFragment extends Fragment {
+public class TodayWeatherFragment extends Fragment implements WeatherContract.view {
     private String LOG_TAG = TodayWeatherFragment.class.getSimpleName();
     private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
     private ForeCastApiModel foreCastApiModel;
+    private WeatherContract.userActions weatherPresenter = new WeatherPresenter(new ApiWeatherService(), this);
 
-    @Bind(R.id.recyclerViewMovie)
     RecyclerView mSearchRecyclerView;
-
-    @Bind(R.id.weather_icon_imageView)
     ImageView mWeatherIcon;
-
-    @Bind(R.id.textView_location)
     TextView mLocation;
-
-    @Bind(R.id.textView_summary)
     TextView mSummary;
-
-    @Bind(R.id.textView_temp)
     TextView mTemp;
 
     public TodayWeatherFragment() {
@@ -71,17 +56,25 @@ public class TodayWeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        JsonParser();
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_today_weather, container, false);
+        // Inflate the layout for this fragment with DataBinding
+        FragmentTodayWeatherBinding fragmentTodayWeatherBinding =
+                DataBindingUtil.inflate(inflater, R.layout.fragment_today_weather, container, false);
 
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.linearLayout);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
+        // Bind the Views
+        mSearchRecyclerView = fragmentTodayWeatherBinding.recyclerViewDailyWeather;
+        mWeatherIcon = fragmentTodayWeatherBinding.weatherIconImageView;
+        mLocation = fragmentTodayWeatherBinding.textViewLocation;
+        mSummary = fragmentTodayWeatherBinding.textViewSummary;
+        mTemp = fragmentTodayWeatherBinding.textViewTemp;
+
+        // Set the Layout OnClickListener
+        fragmentTodayWeatherBinding.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ForecastDetail.class);
 
+                // Setting the Shared View Transitions
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation(getActivity(),
                                 mWeatherIcon, // Starting view
@@ -99,8 +92,7 @@ public class TodayWeatherFragment extends Fragment {
             }
         });
 
-        // Inject the Views
-        ButterKnife.bind(this, view);
+        weatherPresenter.loadData();
 
         // Setting the RecyclerView Layout
         mSearchRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -108,21 +100,7 @@ public class TodayWeatherFragment extends Fragment {
         // Setting the Adapter
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), dailyTempArrayListArrayList);
         mSearchRecyclerView.setAdapter(mTodayWeatherAdapter);
-        return view;
-    }
-
-    private void setTodayWeather() {
-
-        // Fetch the Icon String and load Image
-        String mWeatherIconString = foreCastApiModel.getDaily().getIcon();
-        loadImage(mWeatherIconString);
-
-        // Set the Location TextView
-        mLocation.setText(foreCastApiModel.getTimezone());
-
-        mSummary.setText(foreCastApiModel.getCurrently().getSummary());
-
-        mTemp.setText(foreCastApiModel.getCurrently().getTemperature());
+        return fragmentTodayWeatherBinding.getRoot();
     }
 
     private void loadImage(String mWeatherIconString) {
@@ -165,41 +143,25 @@ public class TodayWeatherFragment extends Fragment {
                 .into(mWeatherIcon);
     }
 
-    public void JsonParser() {
-        final String url = "https://api.forecast.io/forecast/203bf0976335ed98863b556ed9f61f79/38.968,-76.873";
-        RequestQueue requestQueue = VolleySingleton.getInstance().getRequestQueue();
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(LOG_TAG, "response" + response);
-                parseJSONresponse(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(LOG_TAG, "Error Message" + error.getMessage());
-            }
-        });
-        Log.d(LOG_TAG, "Error Message" + jsObjRequest);
-        requestQueue.add(jsObjRequest);
+    @Override
+    public void displayTodayWeather(ForeCastApiModel apiModel) {
+        this.foreCastApiModel = apiModel;
+
+        // Fetch the Icon String and load Image
+        String mWeatherIconString = apiModel.getDaily().getIcon();
+        loadImage(mWeatherIconString);
+
+        // Set the TextView
+        mLocation.setText(apiModel.getTimezone());
+
+        mSummary.setText(apiModel.getCurrently().getSummary());
+
+        mTemp.setText(apiModel.getCurrently().getTemperature());
     }
 
-    private void parseJSONresponse(JSONObject response) {
-        Gson gson = new Gson();
-        foreCastApiModel = gson.fromJson(response.toString(), ForeCastApiModel.class);
-        Log.d(LOG_TAG, "latitude: " + foreCastApiModel.getLatitude());
-        Log.d(LOG_TAG, "getTimezone: " + foreCastApiModel.getTimezone());
-        Log.d(LOG_TAG, "getApparentTemperature: " + foreCastApiModel.getCurrently().getApparentTemperature());
-        Log.d(LOG_TAG, "getData: " + foreCastApiModel.getDaily().getData().getClass());
-        for (DailyTemp dailyTemp : foreCastApiModel.getDaily().getData()) {
-            Log.d(LOG_TAG, "getTemperatureMax: " + dailyTemp.getTemperatureMax());
-        }
-        dailyTempArrayListArrayList = foreCastApiModel.getDaily().getData();
-        mSearchRecyclerView.getAdapter().notifyDataSetChanged();
-
-        mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), dailyTempArrayListArrayList);
+    @Override
+    public void displayWeeklyWeather(List<DailyTemp> dailyTemps) {
+        mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), dailyTemps);
         mSearchRecyclerView.setAdapter(mTodayWeatherAdapter);
-        setTodayWeather();
     }
-
 }
