@@ -1,5 +1,6 @@
 package com.gooner10.weatherforecast.ui.Activity;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,27 +16,34 @@ import com.bumptech.glide.Glide;
 import com.gooner10.weatherforecast.EventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.Model.ForeCastApiModel;
 import com.gooner10.weatherforecast.R;
+import com.gooner10.weatherforecast.databinding.ActivityForecastDetailBinding;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 public class ForecastDetail extends AppCompatActivity {
     private ForeCastApiModel dataModel;
 
-    @Bind(R.id.weather_temp_value)
     TextView mWeatherTempValue;
-
-    @Bind(R.id.wind_speed_value)
     TextView mWindSpeed;
+    Toolbar mToolbar;
+    ActivityForecastDetailBinding detailBinding;
+    CollapsingToolbarLayout mCollapsingToolbar;
+    FloatingActionButton fab;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forecast_detail);
-        ButterKnife.bind(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.content_toolbar);
-        setSupportActionBar(toolbar);
+
+        detailBinding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_detail);
+        mWeatherTempValue = detailBinding.contentForecastDetail.weatherTempValue;
+        mWindSpeed = detailBinding.contentForecastDetail.windSpeed;
+        mToolbar = detailBinding.contentForecastDetail.contentToolbar;
+        mCollapsingToolbar = detailBinding.contentForecastDetail.collapsingToolbar;
+        fab = detailBinding.contentForecastDetail.detailFabButton;
+        imageView = detailBinding.contentForecastDetail.backdrop;
+
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Register to the bus
@@ -45,16 +53,13 @@ public class ForecastDetail extends AppCompatActivity {
         loadBackdrop();
 
         // Setting the Collapsing ToolBar
-        CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("Today's Weather");
+        mCollapsingToolbar.setTitle("Today's Weather");
 
         // Setting the values to the detail view
         mWeatherTempValue.setText(dataModel.getCurrently().getTemperature());
         mWindSpeed.setText(dataModel.getCurrently().getWindSpeed());
 
         // Floating Button with SnackBar
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.detail_fab_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +81,6 @@ public class ForecastDetail extends AppCompatActivity {
     }
 
     private void loadBackdrop() {
-        final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
         Glide.with(ForecastDetail.this).load(R.id.backdrop)
                 .crossFade()
                 .centerCrop()
