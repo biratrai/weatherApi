@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.Network;
+package com.gooner10.weatherforecast.Services.Network;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;

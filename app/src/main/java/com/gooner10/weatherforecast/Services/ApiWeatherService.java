@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast;
+package com.gooner10.weatherforecast.Services;
 
 import android.util.Log;
 
@@ -7,7 +7,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.gooner10.weatherforecast.Network.VolleySingleton;
+import com.gooner10.weatherforecast.Services.Network.VolleySingleton;
 
 import org.json.JSONObject;
 

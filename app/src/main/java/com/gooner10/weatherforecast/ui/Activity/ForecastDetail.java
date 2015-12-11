@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gooner10.weatherforecast.EventBus.OnItemClickEvent;
-import com.gooner10.weatherforecast.Model.ForeCastApiModel;
+import com.gooner10.weatherforecast.Model.pojo.ForeCastApiModel;
 import com.gooner10.weatherforecast.R;
 import com.gooner10.weatherforecast.databinding.ActivityForecastDetailBinding;
 

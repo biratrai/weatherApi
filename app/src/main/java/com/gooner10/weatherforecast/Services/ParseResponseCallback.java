@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast;
+package com.gooner10.weatherforecast.Services;
 
 import org.json.JSONObject;
 
