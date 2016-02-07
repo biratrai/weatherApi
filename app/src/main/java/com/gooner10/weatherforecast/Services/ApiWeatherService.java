@@ -12,7 +12,7 @@ import com.gooner10.weatherforecast.Services.Network.VolleySingleton;
 import org.json.JSONObject;
 
 public class ApiWeatherService implements WeatherService {
-    public static final String LOG_TAG = ApiWeatherService.class.getSimpleName();
+    private static final String LOG_TAG = ApiWeatherService.class.getSimpleName();
     private static final String url = "https://api.forecast.io/forecast/203bf0976335ed98863b556ed9f61f79/38.968,-76.873";
 
     @Override

@@ -37,17 +37,17 @@ import de.greenrobot.event.EventBus;
  * A simple {@link Fragment} subclass.
  */
 public class TodayWeatherFragment extends Fragment implements WeatherContract.view {
-    private String LOG_TAG = TodayWeatherFragment.class.getSimpleName();
-    private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
+    private final String LOG_TAG = TodayWeatherFragment.class.getSimpleName();
+    private final List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
     private ForeCastApiModel foreCastApiModel;
-    private WeatherContract.userActions weatherPresenter = new WeatherPresenter(new ApiWeatherService(), this);
+    private final WeatherContract.userActions weatherPresenter = new WeatherPresenter(new ApiWeatherService(), this);
 
-    RecyclerView mSearchRecyclerView;
-    ImageView mWeatherIcon;
-    TextView mLocation;
-    TextView mSummary;
-    TextView mTemp;
+    private RecyclerView mSearchRecyclerView;
+    private ImageView mWeatherIcon;
+    private TextView mLocation;
+    private TextView mSummary;
+    private TextView mTemp;
 
     public TodayWeatherFragment() {
         // Required empty public constructor
@@ -106,33 +106,43 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
     private void loadImage(String mWeatherIconString) {
         int mWeatherURL;
         Log.d(LOG_TAG, "mWeatherIconString " + mWeatherIconString);
-        if (mWeatherIconString.equals(Constants.CLEAR_DAY)) {
-            mWeatherURL = R.drawable.clear_day;
-            Log.d(LOG_TAG, "clear-day " + mWeatherIcon);
-        } else if (mWeatherIconString.equals(Constants.CLEAR_NIGHT)) {
-            mWeatherURL = R.drawable.clear_night;
-            Log.d(LOG_TAG, "clear-night " + mWeatherIcon);
-        } else if (mWeatherIconString.equals(Constants.RAIN)) {
-            mWeatherURL = R.drawable.rain;
-            Log.d(LOG_TAG, "rain " + mWeatherIcon);
-        } else if (mWeatherIconString.equals(Constants.SNOW)) {
-            mWeatherURL = R.drawable.snow;
-            Log.d(LOG_TAG, "snow " + mWeatherIcon);
-        } else if (mWeatherIconString.equals(Constants.SLEET)) {
-            mWeatherURL = R.drawable.sleet;
-            Log.d(LOG_TAG, "snow " + mWeatherIcon);
-        } else if (mWeatherIconString.equals(Constants.WIND)) {
-            mWeatherURL = R.drawable.wind;
-            Log.d(LOG_TAG, "snow " + mWeatherIcon);
-        } else if (mWeatherIconString.equals(Constants.CLOUDY)) {
-            mWeatherURL = R.drawable.cloudy;
-            Log.d(LOG_TAG, "snow " + mWeatherIcon);
-        } else if (mWeatherIconString.equals(Constants.PARTLY_CLOUDY_NIGHT)) {
-            mWeatherURL = R.drawable.partly_cloudy_night;
-            Log.d(LOG_TAG, "snow " + mWeatherIcon);
-        } else {
-            mWeatherURL = R.drawable.undefined;
-            Log.d(LOG_TAG, "snow " + mWeatherIcon);
+        switch (mWeatherIconString) {
+            case Constants.CLEAR_DAY:
+                mWeatherURL = R.drawable.clear_day;
+                Log.d(LOG_TAG, "clear-day " + mWeatherIcon);
+                break;
+            case Constants.CLEAR_NIGHT:
+                mWeatherURL = R.drawable.clear_night;
+                Log.d(LOG_TAG, "clear-night " + mWeatherIcon);
+                break;
+            case Constants.RAIN:
+                mWeatherURL = R.drawable.rain;
+                Log.d(LOG_TAG, "rain " + mWeatherIcon);
+                break;
+            case Constants.SNOW:
+                mWeatherURL = R.drawable.snow;
+                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                break;
+            case Constants.SLEET:
+                mWeatherURL = R.drawable.sleet;
+                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                break;
+            case Constants.WIND:
+                mWeatherURL = R.drawable.wind;
+                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                break;
+            case Constants.CLOUDY:
+                mWeatherURL = R.drawable.cloudy;
+                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                break;
+            case Constants.PARTLY_CLOUDY_NIGHT:
+                mWeatherURL = R.drawable.partly_cloudy_night;
+                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                break;
+            default:
+                mWeatherURL = R.drawable.undefined;
+                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                break;
         }
 
         Glide.with(this)

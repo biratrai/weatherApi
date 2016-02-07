@@ -9,8 +9,8 @@ import com.gooner10.weatherforecast.Services.WeatherService;
 import org.json.JSONObject;
 
 public class WeatherPresenter implements WeatherContract.userActions {
-    WeatherService weatherService;
-    WeatherContract.view wView;
+    private final WeatherService weatherService;
+    private final WeatherContract.view wView;
 
     public WeatherPresenter(WeatherService weatherService, WeatherContract.view wView) {
         this.weatherService = weatherService;

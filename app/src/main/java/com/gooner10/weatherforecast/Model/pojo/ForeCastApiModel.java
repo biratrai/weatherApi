@@ -12,11 +12,11 @@ public class ForeCastApiModel {
                 '}';
     }
 
-    String latitude;
-    String longitude;
-    String timezone;
-    CurrentForecast currently;
-    DailyForecast daily;
+    private String latitude;
+    private String longitude;
+    private String timezone;
+    private CurrentForecast currently;
+    private DailyForecast daily;
 
     public ForeCastApiModel(String latitude, String longitude, String timezone, CurrentForecast currently, DailyForecast daily) {
         this.latitude = latitude;

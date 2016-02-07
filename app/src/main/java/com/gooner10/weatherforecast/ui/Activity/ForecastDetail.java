@@ -22,25 +22,18 @@ import de.greenrobot.event.EventBus;
 
 public class ForecastDetail extends AppCompatActivity {
     private ForeCastApiModel dataModel;
-
-    TextView mWeatherTempValue;
-    TextView mWindSpeed;
-    Toolbar mToolbar;
-    ActivityForecastDetailBinding detailBinding;
-    CollapsingToolbarLayout mCollapsingToolbar;
-    FloatingActionButton fab;
-    ImageView imageView;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        detailBinding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_detail);
-        mWeatherTempValue = detailBinding.contentForecastDetail.weatherTempValue;
-        mWindSpeed = detailBinding.contentForecastDetail.windSpeed;
-        mToolbar = detailBinding.contentForecastDetail.contentToolbar;
-        mCollapsingToolbar = detailBinding.contentForecastDetail.collapsingToolbar;
-        fab = detailBinding.contentForecastDetail.detailFabButton;
+        ActivityForecastDetailBinding detailBinding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_detail);
+        TextView mWeatherTempValue = detailBinding.contentForecastDetail.weatherTempValue;
+        TextView mWindSpeed = detailBinding.contentForecastDetail.windSpeed;
+        Toolbar mToolbar = detailBinding.contentForecastDetail.contentToolbar;
+        CollapsingToolbarLayout mCollapsingToolbar = detailBinding.contentForecastDetail.collapsingToolbar;
+        FloatingActionButton fab = detailBinding.contentForecastDetail.detailFabButton;
         imageView = detailBinding.contentForecastDetail.backdrop;
 
         setSupportActionBar(mToolbar);
@@ -71,7 +64,7 @@ public class ForecastDetail extends AppCompatActivity {
 
     // onEvent Receive the Event
     public void onEventMainThread(OnItemClickEvent event) {
-        dataModel = (ForeCastApiModel) event.getData();
+        dataModel = event.getData();
     }
 
     @Override

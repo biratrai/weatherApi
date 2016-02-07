@@ -27,16 +27,16 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String LOG_TAG = MainActivity.class.getSimpleName();
-    private Fragment mTodayWeatherFragment = new TodayWeatherFragment();
+    private final Fragment mTodayWeatherFragment = new TodayWeatherFragment();
 
-    Toolbar mToolbar;
-    ViewPager mViewPager;
-    DrawerLayout mDrawerLayout;
-    FloatingActionButton fab;
-    NavigationView navigationView;
-    TabLayout mTabLayout;
+    private Toolbar mToolbar;
+    private ViewPager mViewPager;
+    private DrawerLayout mDrawerLayout;
+    private FloatingActionButton fab;
+    private NavigationView navigationView;
+    private TabLayout mTabLayout;
 
-    ActivityMainBinding mainBinding;
+    private ActivityMainBinding mainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,17 +126,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_overview) {
-            callToNavMenu("Activity");
+            callToNavMenu("Overview");
         } else if (id == R.id.nav_daily_forecast) {
-            callToNavMenu("Matches");
+            callToNavMenu("Daily Forecast");
         } else if (id == R.id.nav_hourly_forecast) {
-            callToNavMenu("Quick Match");
+            callToNavMenu("Hourly Forecast");
         } else if (id == R.id.nav_map) {
-            callToNavMenu("Messages");
+            callToNavMenu("Maps");
         } else if (id == R.id.nav_about) {
-            callToNavMenu("Visitors");
+            callToNavMenu("About");
         } else if (id == R.id.nav_contact) {
-            callToNavMenu("Likes");
+            callToNavMenu("Contact");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void callToNavMenu(String message) {
+    private void callToNavMenu(String message) {
         Toast.makeText(this, message + " clicked!", Toast.LENGTH_SHORT).show();
     }
 }

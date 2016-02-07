@@ -12,15 +12,15 @@ public class RecyclerViewAnimUtils {
 
         int holderHeight = holder.itemView.getHeight();
 
-        holder.itemView.setPivotY(goesDown == true ? 0 : holderHeight);
+        holder.itemView.setPivotY(goesDown ? 0 : holderHeight);
 
         holder.itemView.setPivotX(holder.itemView.getHeight());
 
         AnimatorSet animatorSet = new AnimatorSet();
 
-        ObjectAnimator animatorTranslateY = ObjectAnimator.ofFloat(holder.itemView, "translationY", goesDown == true ? 300 : -300, 0);
+        ObjectAnimator animatorTranslateY = ObjectAnimator.ofFloat(holder.itemView, "translationY", goesDown ? 300 : -300, 0);
 
-        ObjectAnimator animatorRotation = ObjectAnimator.ofFloat(holder.itemView, "rotationX", goesDown == true ? -90f : 90, 0f);
+        ObjectAnimator animatorRotation = ObjectAnimator.ofFloat(holder.itemView, "rotationX", goesDown ? -90f : 90, 0f);
 
         ObjectAnimator animatorScaleX = ObjectAnimator.ofFloat(holder.itemView, "scaleX", 0.5f, 1f);
 

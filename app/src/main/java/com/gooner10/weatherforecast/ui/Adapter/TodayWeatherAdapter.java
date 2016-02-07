@@ -19,9 +19,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapter.ViewHolderData> {
-    public LayoutInflater layoutInflater;
-    public Context mContext;
-    public List<DailyTemp> mDailyTemp;
+    private final LayoutInflater layoutInflater;
+    private final Context mContext;
+    private final List<DailyTemp> mDailyTemp;
     private int mPreviousPosition = 0;
 
     public TodayWeatherAdapter(Context mContext, List<DailyTemp> mDailyTemp) {
@@ -33,9 +33,8 @@ public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapte
     @Override
     public ViewHolderData onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.daily_weather_row, parent, false);
-        ViewHolderData viewHolderData = new ViewHolderData(view);
 
-        return viewHolderData;
+        return new ViewHolderData(view);
     }
 
     @Override
