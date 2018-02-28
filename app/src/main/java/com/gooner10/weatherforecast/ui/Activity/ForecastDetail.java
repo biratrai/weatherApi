@@ -16,17 +16,17 @@ import com.gooner10.weatherforecast.EventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.Model.ForeCastApiModel;
 import com.gooner10.weatherforecast.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 public class ForecastDetail extends AppCompatActivity {
     private ForeCastApiModel dataModel;
 
-    @Bind(R.id.weather_temp_value)
+    @BindView(R.id.weather_temp_value)
     TextView mWeatherTempValue;
 
-    @Bind(R.id.wind_speed_value)
+    @BindView(R.id.wind_speed_value)
     TextView mWindSpeed;
 
     @Override

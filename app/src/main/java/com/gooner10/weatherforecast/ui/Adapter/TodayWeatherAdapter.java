@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapter.ViewHolderData> {
@@ -40,7 +40,7 @@ public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolderData holder, final int position) {
-        long mSystemMillisecond = Long.parseLong((mDailyTemp.get(position).getTime()))*1000;
+        long mSystemMillisecond = Long.parseLong((mDailyTemp.get(position).getTime())) * 1000;
         Date date = new Date(mSystemMillisecond);
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         String mDailyDate = fmt.format(date);
@@ -63,13 +63,13 @@ public class TodayWeatherAdapter extends RecyclerView.Adapter<TodayWeatherAdapte
     public class ViewHolderData extends RecyclerView.ViewHolder {
         public final View mView;
 
-        @Bind(R.id.MinTempTextView)
+        @BindView(R.id.MinTempTextView)
         TextView mMinTempTextView;
 
-        @Bind(R.id.DateTextView)
+        @BindView(R.id.DateTextView)
         TextView mDateTextView;
 
-        @Bind(R.id.MaxTempTextView)
+        @BindView(R.id.MaxTempTextView)
         TextView mMaxTempTextView;
 
         public ViewHolderData(View itemView) {
