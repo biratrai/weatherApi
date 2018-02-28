@@ -1,28 +1,23 @@
 package com.gooner10.weatherforecast.ui.Activity;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.gooner10.weatherforecast.R;
+import com.gooner10.weatherforecast.databinding.ActivityMainBinding;
 import com.gooner10.weatherforecast.ui.Adapter.TabViewAdapter;
-import com.gooner10.weatherforecast.ui.Fragments.TodayWeatherFragment;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import com.gooner10.weatherforecast.weather.TodayWeatherFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,37 +25,18 @@ public class MainActivity extends AppCompatActivity
     private String LOG_TAG = MainActivity.class.getSimpleName();
     private Fragment mTodayWeatherFragment = new TodayWeatherFragment();
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
-
-    @Bind(R.id.viewpager)
-    ViewPager mViewPager;
-
-    @Bind(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
-
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
-
-    @Bind(R.id.nav_view)
-    NavigationView navigationView;
-
-    @Bind(R.id.tabs)
-    TabLayout mTabLayout;
+    ActivityMainBinding layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        layout = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        // Bind all of the view
-        ButterKnife.bind(this);
-
-        // Set Toolbar
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(layout.appbar.toolbar);
 
         // Set Snack bar Listener
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        layout.appbar.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "This is a Snackbar in action", Snackbar.LENGTH_LONG)
@@ -70,25 +46,25 @@ public class MainActivity extends AppCompatActivity
 
         // Set Toggle ActionBar
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.setDrawerListener(toggle);
+                this, layout.drawerLayout, layout.appbar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        layout.drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         // Setup Navigation Drawer
-        navigationView.setNavigationItemSelectedListener(this);
+        layout.navView.setNavigationItemSelectedListener(this);
 
         // Setup ViewPager
         setupViewPager();
 
         // Initialize Tabs
-        mTabLayout.setupWithViewPager(mViewPager);
+        layout.appbar.tabs.setupWithViewPager(layout.appbar.contentMain.viewpager);
     }
 
     private void setupViewPager() {
-        if (mViewPager != null) {
+        if (layout.appbar.contentMain.viewpager != null) {
             TabViewAdapter mTabViewAdapter = new TabViewAdapter(getSupportFragmentManager());
             mTabViewAdapter.addFragment(mTodayWeatherFragment, "Weather");
-            mViewPager.setAdapter(mTabViewAdapter);
+            layout.appbar.contentMain.viewpager.setAdapter(mTabViewAdapter);
         }
     }
 
