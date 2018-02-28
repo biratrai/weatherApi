@@ -1,11 +1,22 @@
-package com.gooner10.weatherforecast.Model;
+package com.gooner10.weatherforecast.Model.pojo;
 
 public class ForeCastApiModel {
-    String latitude;
-    String longitude;
-    String timezone;
-    CurrentForecast currently;
-    DailyForecast daily;
+    @Override
+    public String toString() {
+        return "ForeCastApiModel{" +
+                "latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", timezone='" + timezone + '\'' +
+                ", currently=" + currently +
+                ", daily=" + daily +
+                '}';
+    }
+
+    private String latitude;
+    private String longitude;
+    private String timezone;
+    private CurrentForecast currently;
+    private DailyForecast daily;
 
     public ForeCastApiModel(String latitude, String longitude, String timezone, CurrentForecast currently, DailyForecast daily) {
         this.latitude = latitude;

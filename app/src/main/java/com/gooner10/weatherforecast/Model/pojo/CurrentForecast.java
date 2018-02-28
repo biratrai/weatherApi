@@ -1,24 +1,24 @@
-package com.gooner10.weatherforecast.Model;
+package com.gooner10.weatherforecast.Model.pojo;
 
 public class CurrentForecast {
-    String time;
-    String summary;
-    String icon;
-    String nearestStormDistance;
-    String precipIntensity;
-    String precipIntensityError;
-    String precipProbability;
-    String precipType;
-    String temperature;
-    String apparentTemperature;
-    String dewPoint;
-    String humidity;
-    String windSpeed;
-    String windBearing;
-    String visibility;
-    String cloudCover;
-    String pressure;
-    String ozone;
+    private final String time;
+    private final String summary;
+    private final String icon;
+    private final String nearestStormDistance;
+    private final String precipIntensity;
+    private final String precipIntensityError;
+    private final String precipProbability;
+    private final String precipType;
+    private final String temperature;
+    private final String apparentTemperature;
+    private final String dewPoint;
+    private final String humidity;
+    private final String windSpeed;
+    private final String windBearing;
+    private final String visibility;
+    private final String cloudCover;
+    private final String pressure;
+    private final String ozone;
 
     public CurrentForecast(String time, String summary, String icon,
                            String nearestStormDistance, String precipIntensity,

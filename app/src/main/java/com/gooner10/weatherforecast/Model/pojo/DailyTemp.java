@@ -1,33 +1,33 @@
-package com.gooner10.weatherforecast.Model;
+package com.gooner10.weatherforecast.Model.pojo;
 
 public class DailyTemp {
-    String time;
-    String summary;
-    String icon;
-    String sunriseTime;
-    String sunsetTime;
-    String moonPhase;
-    String precipIntensity;
-    String precipIntensityMax;
-    String precipIntensityMaxTime;
-    String precipProbability;
-    String precipType;
-    String temperatureMin;
-    String temperatureMinTime;
-    String temperatureMax;
-    String temperatureMaxTime;
-    String apparentTemperatureMin;
-    String apparentTemperatureMinTime;
-    String apparentTemperatureMax;
-    String apparentTemperatureMaxTime;
-    String dewPoint;
-    String humidity;
-    String windSpeed;
-    String windBearing;
-    String visibility;
-    String cloudCover;
-    String pressure;
-    String ozone;
+    private final String time;
+    private final String summary;
+    private final String icon;
+    private final String sunriseTime;
+    private final String sunsetTime;
+    private final String moonPhase;
+    private final String precipIntensity;
+    private final String precipIntensityMax;
+    private final String precipIntensityMaxTime;
+    private final String precipProbability;
+    private final String precipType;
+    private final String temperatureMin;
+    private final String temperatureMinTime;
+    private final String temperatureMax;
+    private final String temperatureMaxTime;
+    private final String apparentTemperatureMin;
+    private final String apparentTemperatureMinTime;
+    private final String apparentTemperatureMax;
+    private final String apparentTemperatureMaxTime;
+    private final String dewPoint;
+    private final String humidity;
+    private final String windSpeed;
+    private final String windBearing;
+    private final String visibility;
+    private final String cloudCover;
+    private final String pressure;
+    private final String ozone;
 
     public DailyTemp(String time, String summary, String icon, String sunriseTime,
                          String sunsetTime, String moonPhase, String precipIntensity,

@@ -2,13 +2,17 @@ package com.gooner10.weatherforecast.ui.Activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,20 +27,36 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String LOG_TAG = MainActivity.class.getSimpleName();
-    private Fragment mTodayWeatherFragment = new TodayWeatherFragment();
+    private final Fragment mTodayWeatherFragment = new TodayWeatherFragment();
 
-    ActivityMainBinding layout;
+    private Toolbar mToolbar;
+    private ViewPager mViewPager;
+    private DrawerLayout mDrawerLayout;
+    private FloatingActionButton fab;
+    private NavigationView navigationView;
+    private TabLayout mTabLayout;
+
+    private ActivityMainBinding mainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        layout = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        setSupportActionBar(layout.appbar.toolbar);
+        // Bind all of the view
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mToolbar = mainBinding.appbar.toolbar;
+        mViewPager = mainBinding.appbar.contentMain.viewpager;
+        mDrawerLayout = mainBinding.drawerLayout;
+        fab = mainBinding.appbar.fab;
+        navigationView = mainBinding.navView;
+        mTabLayout = mainBinding.appbar.tabs;
+
+        // Set Toolbar
+        setSupportActionBar(mToolbar);
 
         // Set Snack bar Listener
 
-        layout.appbar.fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "This is a Snackbar in action", Snackbar.LENGTH_LONG)
@@ -46,25 +66,25 @@ public class MainActivity extends AppCompatActivity
 
         // Set Toggle ActionBar
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, layout.drawerLayout, layout.appbar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        layout.drawerLayout.setDrawerListener(toggle);
+                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         // Setup Navigation Drawer
-        layout.navView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
         // Setup ViewPager
         setupViewPager();
 
         // Initialize Tabs
-        layout.appbar.tabs.setupWithViewPager(layout.appbar.contentMain.viewpager);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     private void setupViewPager() {
-        if (layout.appbar.contentMain.viewpager != null) {
+        if (mViewPager != null) {
             TabViewAdapter mTabViewAdapter = new TabViewAdapter(getSupportFragmentManager());
             mTabViewAdapter.addFragment(mTodayWeatherFragment, "Weather");
-            layout.appbar.contentMain.viewpager.setAdapter(mTabViewAdapter);
+            mViewPager.setAdapter(mTabViewAdapter);
         }
     }
 
@@ -107,25 +127,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_overview) {
-            callToNavMenu("Activity");
+            callToNavMenu("Overview");
         } else if (id == R.id.nav_daily_forecast) {
-            callToNavMenu("Matches");
+            callToNavMenu("Daily Forecast");
         } else if (id == R.id.nav_hourly_forecast) {
-            callToNavMenu("Quick Match");
+            callToNavMenu("Hourly Forecast");
         } else if (id == R.id.nav_map) {
-            callToNavMenu("Messages");
+            callToNavMenu("Maps");
         } else if (id == R.id.nav_about) {
-            callToNavMenu("Visitors");
+            callToNavMenu("About");
         } else if (id == R.id.nav_contact) {
-            callToNavMenu("Likes");
+            callToNavMenu("Contact");
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void callToNavMenu(String message) {
+    private void callToNavMenu(String message) {
         Toast.makeText(this, message + " clicked!", Toast.LENGTH_SHORT).show();
     }
 }

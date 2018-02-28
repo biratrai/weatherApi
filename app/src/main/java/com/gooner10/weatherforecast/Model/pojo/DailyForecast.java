@@ -1,11 +1,11 @@
-package com.gooner10.weatherforecast.Model;
+package com.gooner10.weatherforecast.Model.pojo;
 
 import java.util.List;
 
 public class DailyForecast {
-    String summary;
-    String icon;
-    List<DailyTemp> data;
+    private String summary;
+    private String icon;
+    private List<DailyTemp> data;
 
 
     public DailyForecast(String summary, String icon, List<DailyTemp> data) {

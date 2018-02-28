@@ -1,28 +1,22 @@
-package com.gooner10.weatherforecast.weather;
-
+package com.gooner10.weatherforecast.Model;
 
 import com.gooner10.weatherforecast.Model.pojo.DailyTemp;
 import com.gooner10.weatherforecast.Model.pojo.ForeCastApiModel;
 
 import java.util.List;
 
-/**
- * Contract for Weather
- */
 public interface WeatherContract {
-
     interface view {
+        void displayTodayWeather(ForeCastApiModel apiModel);
 
-        void displayTodaysTemperature(ForeCastApiModel data);
-
-        void displayWeeklyWeatherData(List<DailyTemp> weeklyTemperature);
+        void displayWeeklyWeather(List<DailyTemp> dailyTemps);
     }
 
     interface userActions {
 
         void loadData();
 
-        void userClicksMoreInfoOnTodaysTemperature();
+        void clickForDetailTodayWeather();
 
     }
 }

@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.weather;
+package com.gooner10.weatherforecast.Services;
 
 import android.util.Log;
 
@@ -11,28 +11,24 @@ import com.gooner10.weatherforecast.Services.Network.VolleySingleton;
 
 import org.json.JSONObject;
 
-/**
- * WeatherService to call weather Api using volley
- */
 public class ApiWeatherService implements WeatherService {
-    public static final String LOG_TAG = "ApiWeatherService";
+    private static final String LOG_TAG = ApiWeatherService.class.getSimpleName();
+    private static final String url = "https://api.forecast.io/forecast/203bf0976335ed98863b556ed9f61f79/38.968,-76.873";
 
     @Override
-    public void getWeatherData(final Callback callback) {
-
-        final String url = "https://api.forecast.io/forecast/203bf0976335ed98863b556ed9f61f79/38.968,-76.873";
+    public void getWeatherData(final ParseResponseCallback responseCallback) {
         RequestQueue requestQueue = VolleySingleton.getInstance().getRequestQueue();
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(LOG_TAG, "response" + response);
-                callback.onSuccess(response);
+                responseCallback.onSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                callback.onError(error.getMessage());
+                responseCallback.onError(error.getMessage());
             }
         });
 
