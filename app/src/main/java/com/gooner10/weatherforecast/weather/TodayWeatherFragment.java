@@ -165,7 +165,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
 
         summary.setText(data.getCurrently().getSummary());
 
-        temp.setText(data.getCurrently().getTemperature());
+        temp.setText(data.getCurrently().getTemperature() + " °F");
     }
 
     /**
