@@ -37,6 +37,7 @@
     </style>
 
     <style name="secondaryText" parent="textStyle">
+        <item name="android:textAppearance">@android:style/TextAppearance.DeviceDefault.Medium</item>
         <item name="android:textColor">@color/lightGrey</item>
     </style>
 </resources>
