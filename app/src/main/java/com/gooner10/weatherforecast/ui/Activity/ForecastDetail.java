@@ -28,14 +28,14 @@ public class ForecastDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityForecastDetailBinding detailBinding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_detail);
-        TextView mWeatherTempValue = detailBinding.contentForecastDetail.weatherTempValue;
-        TextView mWindSpeed = detailBinding.contentForecastDetail.windSpeed;
-        Toolbar mToolbar = detailBinding.contentForecastDetail.contentToolbar;
-        CollapsingToolbarLayout mCollapsingToolbar = detailBinding.contentForecastDetail.collapsingToolbar;
+        TextView weatherTempValue = detailBinding.contentForecastDetail.weatherTempValue;
+        TextView windSpeed = detailBinding.contentForecastDetail.windSpeed;
+        Toolbar toolbar = detailBinding.contentForecastDetail.contentToolbar;
+        CollapsingToolbarLayout collapsingToolbar = detailBinding.contentForecastDetail.collapsingToolbar;
         FloatingActionButton fab = detailBinding.contentForecastDetail.detailFabButton;
         imageView = detailBinding.contentForecastDetail.backdrop;
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Register to the bus
@@ -45,11 +45,11 @@ public class ForecastDetail extends AppCompatActivity {
         loadBackdrop();
 
         // Setting the Collapsing ToolBar
-        mCollapsingToolbar.setTitle("Today's Weather");
+        collapsingToolbar.setTitle("Today's Weather");
 
         // Setting the values to the detail view
-        mWeatherTempValue.setText(dataModel.getCurrently().getTemperature());
-        mWindSpeed.setText(dataModel.getCurrently().getWindSpeed());
+        weatherTempValue.setText(dataModel.getCurrently().getTemperature());
+        windSpeed.setText(dataModel.getCurrently().getWindSpeed());
 
         // Floating Button with SnackBar
         fab.setOnClickListener(new View.OnClickListener() {

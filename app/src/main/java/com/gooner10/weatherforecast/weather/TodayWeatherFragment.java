@@ -47,11 +47,11 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
     private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
     ForeCastApiModel foreCastApiModel;
-    private RecyclerView mSearchRecyclerView;
-    private ImageView mWeatherIcon;
-    private TextView mLocation;
-    private TextView mSummary;
-    private TextView mTemp;
+    private RecyclerView recyclerView;
+    private ImageView weatherIcon;
+    private TextView location;
+    private TextView summary;
+    private TextView temp;
 
     public TodayWeatherFragment() {
         // Required empty public constructor
@@ -63,11 +63,11 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_today_weather, container, false);
 
-        mSearchRecyclerView = binding.recyclerViewDailyWeather;
-        mWeatherIcon = binding.weatherIconImageView;
-        mLocation = binding.textViewLocation;
-        mSummary = binding.textViewSummary;
-        mTemp = binding.textViewTemp;
+        recyclerView = binding.recyclerViewDailyWeather;
+        weatherIcon = binding.weatherIconImageView;
+        location = binding.textViewLocation;
+        summary = binding.textViewSummary;
+        temp = binding.textViewTemp;
 
         binding.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +77,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
                 // Setting the Shared View Transitions
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation(getActivity(),
-                                mWeatherIcon, // Starting view
+                                weatherIcon, // Starting view
                                 "profileWeather"); // The Shared Transition
 
                 // Check build version for the Transition to work
@@ -94,11 +94,11 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
         weatherPresenter.loadData();
 
         // Setting the RecyclerView Layout
-        mSearchRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // Setting the Adapter
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), dailyTempArrayListArrayList);
-        mSearchRecyclerView.setAdapter(mTodayWeatherAdapter);
+        recyclerView.setAdapter(mTodayWeatherAdapter);
         return binding.getRoot();
     }
 
@@ -109,39 +109,39 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
         switch (mWeatherIconString) {
             case Constants.CLEAR_DAY:
                 mWeatherURL = R.drawable.clear_day;
-                Log.d(LOG_TAG, "clear-day " + mWeatherIcon);
+                Log.d(LOG_TAG, "clear-day " + weatherIcon);
                 break;
             case Constants.CLEAR_NIGHT:
                 mWeatherURL = R.drawable.clear_night;
-                Log.d(LOG_TAG, "clear-night " + mWeatherIcon);
+                Log.d(LOG_TAG, "clear-night " + weatherIcon);
                 break;
             case Constants.RAIN:
                 mWeatherURL = R.drawable.rain;
-                Log.d(LOG_TAG, "rain " + mWeatherIcon);
+                Log.d(LOG_TAG, "rain " + weatherIcon);
                 break;
             case Constants.SNOW:
                 mWeatherURL = R.drawable.snow;
-                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                Log.d(LOG_TAG, "snow " + weatherIcon);
                 break;
             case Constants.SLEET:
                 mWeatherURL = R.drawable.sleet;
-                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                Log.d(LOG_TAG, "snow " + weatherIcon);
                 break;
             case Constants.WIND:
                 mWeatherURL = R.drawable.wind;
-                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                Log.d(LOG_TAG, "snow " + weatherIcon);
                 break;
             case Constants.CLOUDY:
                 mWeatherURL = R.drawable.cloudy;
-                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                Log.d(LOG_TAG, "snow " + weatherIcon);
                 break;
             case Constants.PARTLY_CLOUDY_NIGHT:
                 mWeatherURL = R.drawable.partly_cloudy_night;
-                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                Log.d(LOG_TAG, "snow " + weatherIcon);
                 break;
             default:
                 mWeatherURL = R.drawable.undefined;
-                Log.d(LOG_TAG, "snow " + mWeatherIcon);
+                Log.d(LOG_TAG, "snow " + weatherIcon);
                 break;
         }
 
@@ -150,7 +150,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
                 .crossFade(30)
                 .placeholder(R.drawable.image_loading)
                 .error(R.drawable.ic_menu_manage)
-                .into(mWeatherIcon);
+                .into(weatherIcon);
     }
 
 
@@ -161,11 +161,11 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
         String mWeatherIconString = data.getDaily().getIcon();
         loadImage(mWeatherIconString);
         // Set the Location TextView
-        mLocation.setText(data.getTimezone());
+        location.setText(data.getTimezone());
 
-        mSummary.setText(data.getCurrently().getSummary());
+        summary.setText(data.getCurrently().getSummary());
 
-        mTemp.setText(data.getCurrently().getTemperature());
+        temp.setText(data.getCurrently().getTemperature());
     }
 
     /**
@@ -174,6 +174,6 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
     @Override
     public void displayWeeklyWeather(List<DailyTemp> weeklyWeatherDatas) {
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), weeklyWeatherDatas);
-        mSearchRecyclerView.setAdapter(mTodayWeatherAdapter);
+        recyclerView.setAdapter(mTodayWeatherAdapter);
     }
 }
