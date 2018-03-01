@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.Model.pojo;
+package com.gooner10.weatherforecast.model.pojo;
 
 public class CurrentForecast {
     private final String time;

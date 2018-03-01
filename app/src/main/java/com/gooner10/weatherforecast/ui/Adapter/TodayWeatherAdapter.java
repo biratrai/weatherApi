@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.gooner10.weatherforecast.Model.pojo.DailyTemp;
+import com.gooner10.weatherforecast.model.pojo.DailyTemp;
 import com.gooner10.weatherforecast.R;
-import com.gooner10.weatherforecast.WeatherUtils.RecyclerViewAnimUtils;
+import com.gooner10.weatherforecast.weatherUtils.RecyclerViewAnimUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

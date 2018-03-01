@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.WeatherUtils;
+package com.gooner10.weatherforecast.weatherUtils;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

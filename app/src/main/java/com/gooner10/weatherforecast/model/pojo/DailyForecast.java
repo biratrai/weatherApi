@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.Model.pojo;
+package com.gooner10.weatherforecast.model.pojo;
 
 import java.util.List;
 

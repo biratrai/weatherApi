@@ -1,6 +1,6 @@
-package com.gooner10.weatherforecast.EventBus;
+package com.gooner10.weatherforecast.eventBus;
 
-import com.gooner10.weatherforecast.Model.pojo.ForeCastApiModel;
+import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 
 public class OnItemClickEvent {
     private final ForeCastApiModel foreCastApiModel;

@@ -1,8 +1,8 @@
-package com.gooner10.weatherforecast.Services.Network;
+package com.gooner10.weatherforecast.services.network;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.gooner10.weatherforecast.Extras.MyApplication;
+import com.gooner10.weatherforecast.extras.MyApplication;
 
 
 public class VolleySingleton {

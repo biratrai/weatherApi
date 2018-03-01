@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.Extras;
+package com.gooner10.weatherforecast.extras;
 
 import android.app.Application;
 import android.content.Context;

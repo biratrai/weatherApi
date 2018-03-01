@@ -1,7 +1,7 @@
-package com.gooner10.weatherforecast.Model;
+package com.gooner10.weatherforecast.model;
 
-import com.gooner10.weatherforecast.Model.pojo.DailyTemp;
-import com.gooner10.weatherforecast.Model.pojo.ForeCastApiModel;
+import com.gooner10.weatherforecast.model.pojo.DailyTemp;
+import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 
 import java.util.List;
 

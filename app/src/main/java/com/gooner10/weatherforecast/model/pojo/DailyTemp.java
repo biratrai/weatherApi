@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.Model.pojo;
+package com.gooner10.weatherforecast.model.pojo;
 
 public class DailyTemp {
     private final String time;

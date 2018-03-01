@@ -1,10 +1,10 @@
-package com.gooner10.weatherforecast.Presenters;
+package com.gooner10.weatherforecast.presenters;
 
 import com.google.gson.Gson;
-import com.gooner10.weatherforecast.Model.pojo.ForeCastApiModel;
-import com.gooner10.weatherforecast.Services.ParseResponseCallback;
-import com.gooner10.weatherforecast.Model.WeatherContract;
-import com.gooner10.weatherforecast.Services.WeatherService;
+import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
+import com.gooner10.weatherforecast.services.ParseResponseCallback;
+import com.gooner10.weatherforecast.model.WeatherContract;
+import com.gooner10.weatherforecast.services.WeatherService;
 
 import org.json.JSONObject;
 

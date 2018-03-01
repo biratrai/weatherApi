@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.Extras;
+package com.gooner10.weatherforecast.extras;
 
 public class Constants {
     public static  final String CLEAR_DAY = "clear-day";

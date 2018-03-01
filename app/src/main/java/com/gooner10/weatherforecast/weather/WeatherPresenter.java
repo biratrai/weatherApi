@@ -1,7 +1,7 @@
 package com.gooner10.weatherforecast.weather;
 
 import com.google.gson.Gson;
-import com.gooner10.weatherforecast.Model.pojo.ForeCastApiModel;
+import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 
 import org.json.JSONObject;
 
