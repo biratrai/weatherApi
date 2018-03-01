@@ -16,4 +16,8 @@
         Nunc lobortis vulputate maximus. Morbi congue, purus quis varius volutpat, erat velit pulvinar nulla, ac iaculis arcu nisl in quam.</string>
     <string name="weather_info">Temperature</string>
     <string name="wind_speed">Wind Speed</string>
+    <string name="temperature">Temperature</string>
+    <string name="daily_temperature">Daily Temperature</string>
+    <string name="location">Location</string>
+    <string name="summary">Summary</string>
 </resources>
