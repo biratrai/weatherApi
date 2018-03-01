@@ -103,54 +103,54 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
     }
 
 
-    private void loadImage(String mWeatherIconString) {
-        int mWeatherURL;
-        Log.d(LOG_TAG, "mWeatherIconString " + mWeatherIconString);
-        switch (mWeatherIconString) {
+    private void loadImage(String weatherIconString) {
+        int weatherIcon;
+        Log.d(LOG_TAG, "weatherIconString " + weatherIconString);
+        switch (weatherIconString) {
             case Constants.CLEAR_DAY:
-                mWeatherURL = R.drawable.clear_day;
-                Log.d(LOG_TAG, "clear-day " + weatherIcon);
+                weatherIcon = R.drawable.clear_day;
+                Log.d(LOG_TAG, "clear-day " + this.weatherIcon);
                 break;
             case Constants.CLEAR_NIGHT:
-                mWeatherURL = R.drawable.clear_night;
-                Log.d(LOG_TAG, "clear-night " + weatherIcon);
+                weatherIcon = R.drawable.clear_night;
+                Log.d(LOG_TAG, "clear-night " + this.weatherIcon);
                 break;
             case Constants.RAIN:
-                mWeatherURL = R.drawable.rain;
-                Log.d(LOG_TAG, "rain " + weatherIcon);
+                weatherIcon = R.drawable.rain;
+                Log.d(LOG_TAG, "rain " + this.weatherIcon);
                 break;
             case Constants.SNOW:
-                mWeatherURL = R.drawable.snow;
-                Log.d(LOG_TAG, "snow " + weatherIcon);
+                weatherIcon = R.drawable.snow;
+                Log.d(LOG_TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.SLEET:
-                mWeatherURL = R.drawable.sleet;
-                Log.d(LOG_TAG, "snow " + weatherIcon);
+                weatherIcon = R.drawable.sleet;
+                Log.d(LOG_TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.WIND:
-                mWeatherURL = R.drawable.wind;
-                Log.d(LOG_TAG, "snow " + weatherIcon);
+                weatherIcon = R.drawable.wind;
+                Log.d(LOG_TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.CLOUDY:
-                mWeatherURL = R.drawable.cloudy;
-                Log.d(LOG_TAG, "snow " + weatherIcon);
+                weatherIcon = R.drawable.cloudy;
+                Log.d(LOG_TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.PARTLY_CLOUDY_NIGHT:
-                mWeatherURL = R.drawable.partly_cloudy_night;
-                Log.d(LOG_TAG, "snow " + weatherIcon);
+                weatherIcon = R.drawable.partly_cloudy_night;
+                Log.d(LOG_TAG, "snow " + this.weatherIcon);
                 break;
             default:
-                mWeatherURL = R.drawable.undefined;
-                Log.d(LOG_TAG, "snow " + weatherIcon);
+                weatherIcon = R.drawable.undefined;
+                Log.d(LOG_TAG, "snow " + this.weatherIcon);
                 break;
         }
 
         Glide.with(this)
-                .load(mWeatherURL)
+                .load(weatherIcon)
                 .crossFade(30)
                 .placeholder(R.drawable.image_loading)
                 .error(R.drawable.ic_menu_manage)
-                .into(weatherIcon);
+                .into(this.weatherIcon);
     }
 
 
