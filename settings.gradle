@@ -1,1 +1,1 @@
-include ':app-base', ':weatherapk', ':weather-instantapp'
+include ':weather-base', ':weatherapp-apk', ':weather-instantapp'

@@ -8,9 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app-base" />
+            <option value="$PROJECT_DIR$/weather-base" />
             <option value="$PROJECT_DIR$/weather-instantapp" />
-            <option value="$PROJECT_DIR$/weatherapk" />
+            <option value="$PROJECT_DIR$/weatherapp-apk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
