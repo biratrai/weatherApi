@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app-base" />
+            <option value="$PROJECT_DIR$/weather-instantapp" />
             <option value="$PROJECT_DIR$/weatherapk" />
           </set>
         </option>
