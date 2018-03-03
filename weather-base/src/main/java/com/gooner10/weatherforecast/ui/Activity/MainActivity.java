@@ -29,30 +29,23 @@ public class MainActivity extends AppCompatActivity
     private String LOG_TAG = MainActivity.class.getSimpleName();
     private final Fragment mTodayWeatherFragment = new TodayWeatherFragment();
 
-    private Toolbar mToolbar;
-    private ViewPager mViewPager;
-    private DrawerLayout mDrawerLayout;
-    private FloatingActionButton fab;
-    private NavigationView navigationView;
-    private TabLayout mTabLayout;
-
-    private ActivityMainBinding mainBinding;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Bind all of the view
-        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mToolbar = mainBinding.appbar.toolbar;
-        mViewPager = mainBinding.appbar.contentMain.viewpager;
-        mDrawerLayout = mainBinding.drawerLayout;
-        fab = mainBinding.appbar.fab;
-        navigationView = mainBinding.navView;
-        mTabLayout = mainBinding.appbar.tabs;
+        ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        Toolbar toolbar = mainBinding.appbar.toolbar;
+        viewPager = mainBinding.appbar.contentMain.viewpager;
+        DrawerLayout drawerLayout = mainBinding.drawerLayout;
+        FloatingActionButton fab = mainBinding.appbar.fab;
+        NavigationView navigationView = mainBinding.navView;
+        TabLayout tabLayout = mainBinding.appbar.tabs;
 
         // Set Toolbar
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
 
         // Set Snack bar Listener
 
@@ -66,8 +59,8 @@ public class MainActivity extends AppCompatActivity
 
         // Set Toggle ActionBar
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.setDrawerListener(toggle);
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         // Setup Navigation Drawer
@@ -77,14 +70,14 @@ public class MainActivity extends AppCompatActivity
         setupViewPager();
 
         // Initialize Tabs
-        mTabLayout.setupWithViewPager(mViewPager);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void setupViewPager() {
-        if (mViewPager != null) {
+        if (viewPager != null) {
             TabViewAdapter mTabViewAdapter = new TabViewAdapter(getSupportFragmentManager());
             mTabViewAdapter.addFragment(mTodayWeatherFragment, "Weather");
-            mViewPager.setAdapter(mTabViewAdapter);
+            viewPager.setAdapter(mTabViewAdapter);
         }
     }
 
@@ -120,7 +113,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
