@@ -19,11 +19,22 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="weatherapi.samples.androidinstantapps.com"
+                    android:pathPattern="/main" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.Activity.ForecastDetail"
             android:label="@string/title_activity_forecast_detail"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
