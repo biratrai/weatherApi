@@ -42,7 +42,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
 
     private WeatherContract.userActions weatherPresenter = new WeatherPresenter(new ApiWeatherService(), this);
 
-    private String LOG_TAG = TodayWeatherFragment.class.getSimpleName();
+    private String TAG = TodayWeatherFragment.class.getSimpleName();
 
     private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
@@ -105,43 +105,43 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
 
     private void loadImage(String weatherIconString) {
         int weatherIcon;
-        Log.d(LOG_TAG, "weatherIconString " + weatherIconString);
+        Log.d(TAG, "weatherIconString " + weatherIconString);
         switch (weatherIconString) {
             case Constants.CLEAR_DAY:
                 weatherIcon = R.drawable.clear_day;
-                Log.d(LOG_TAG, "clear-day " + this.weatherIcon);
+                Log.d(TAG, "clear-day " + this.weatherIcon);
                 break;
             case Constants.CLEAR_NIGHT:
                 weatherIcon = R.drawable.clear_night;
-                Log.d(LOG_TAG, "clear-night " + this.weatherIcon);
+                Log.d(TAG, "clear-night " + this.weatherIcon);
                 break;
             case Constants.RAIN:
                 weatherIcon = R.drawable.rain;
-                Log.d(LOG_TAG, "rain " + this.weatherIcon);
+                Log.d(TAG, "rain " + this.weatherIcon);
                 break;
             case Constants.SNOW:
                 weatherIcon = R.drawable.snow;
-                Log.d(LOG_TAG, "snow " + this.weatherIcon);
+                Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.SLEET:
                 weatherIcon = R.drawable.sleet;
-                Log.d(LOG_TAG, "snow " + this.weatherIcon);
+                Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.WIND:
                 weatherIcon = R.drawable.wind;
-                Log.d(LOG_TAG, "snow " + this.weatherIcon);
+                Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.CLOUDY:
                 weatherIcon = R.drawable.cloudy;
-                Log.d(LOG_TAG, "snow " + this.weatherIcon);
+                Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.PARTLY_CLOUDY_NIGHT:
                 weatherIcon = R.drawable.partly_cloudy_night;
-                Log.d(LOG_TAG, "snow " + this.weatherIcon);
+                Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             default:
                 weatherIcon = R.drawable.undefined;
-                Log.d(LOG_TAG, "snow " + this.weatherIcon);
+                Log.d(TAG, "snow " + this.weatherIcon);
                 break;
         }
 
@@ -156,6 +156,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
 
     @Override
     public void displayTodayWeather(ForeCastApiModel data) {
+        Log.d(TAG, "displayTodayWeather: ");
         this.foreCastApiModel = data;
         // Fetch the Icon String and load Image
         String mWeatherIconString = data.getDaily().getIcon();
@@ -173,6 +174,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
      */
     @Override
     public void displayWeeklyWeather(List<DailyTemp> weeklyWeatherDatas) {
+        Log.d(TAG, "displayWeeklyWeather: ");
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), weeklyWeatherDatas);
         recyclerView.setAdapter(mTodayWeatherAdapter);
     }

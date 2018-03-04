@@ -1,14 +1,17 @@
 package com.gooner10.weatherforecast.presenters;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
+import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 import com.gooner10.weatherforecast.services.ParseResponseCallback;
-import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.services.WeatherService;
 
 import org.json.JSONObject;
 
 public class WeatherPresenter implements WeatherContract.userActions {
+    public static final String TAG = WeatherPresenter.class.getSimpleName();
     private final WeatherService weatherService;
     private final WeatherContract.view wView;
 
@@ -29,7 +32,7 @@ public class WeatherPresenter implements WeatherContract.userActions {
 
             @Override
             public void onError(String errorMessage) {
-
+                Log.e(TAG, "onError: " + errorMessage);
             }
         });
     }
