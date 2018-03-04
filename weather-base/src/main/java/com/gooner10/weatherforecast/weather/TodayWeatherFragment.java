@@ -16,15 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gooner10.weatherforecast.R;
+import com.gooner10.weatherforecast.databinding.FragmentTodayWeatherBinding;
 import com.gooner10.weatherforecast.eventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.extras.Constants;
 import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.model.pojo.DailyTemp;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 import com.gooner10.weatherforecast.presenters.WeatherPresenter;
-import com.gooner10.weatherforecast.R;
 import com.gooner10.weatherforecast.services.ApiWeatherService;
-import com.gooner10.weatherforecast.databinding.FragmentTodayWeatherBinding;
 import com.gooner10.weatherforecast.ui.Activity.ForecastDetail;
 import com.gooner10.weatherforecast.ui.Adapter.TodayWeatherAdapter;
 
@@ -161,8 +161,8 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
         location.setText(data.getTimezone());
 
         summary.setText(data.getCurrently().getSummary());
-
-        temp.setText(data.getCurrently().getTemperature() + " °F");
+        String weatherText = data.getCurrently().getTemperature() + " °F";
+        temp.setText(weatherText);
     }
 
     /**
