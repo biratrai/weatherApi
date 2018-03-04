@@ -38,15 +38,11 @@ import de.greenrobot.event.EventBus;
  */
 public class TodayWeatherFragment extends Fragment implements WeatherContract.view {
 
-    FragmentTodayWeatherBinding binding;
-
-    private WeatherContract.userActions weatherPresenter = new WeatherPresenter(new ApiWeatherService(), this);
-
     private String TAG = TodayWeatherFragment.class.getSimpleName();
-
+    private WeatherContract.userActions weatherPresenter = new WeatherPresenter(new ApiWeatherService(), this);
     private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
-    ForeCastApiModel foreCastApiModel;
+    private ForeCastApiModel foreCastApiModel;
     private RecyclerView recyclerView;
     private ImageView weatherIcon;
     private TextView location;
@@ -61,7 +57,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_today_weather, container, false);
+        FragmentTodayWeatherBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_today_weather, container, false);
 
         recyclerView = binding.recyclerViewDailyWeather;
         weatherIcon = binding.weatherIconImageView;
