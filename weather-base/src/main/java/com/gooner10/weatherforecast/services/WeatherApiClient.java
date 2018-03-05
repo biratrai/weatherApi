@@ -9,6 +9,6 @@ import retrofit2.http.GET;
  */
 
 public interface WeatherApiClient {
-    @GET
+    @GET()
     ForeCastApiModel getWeatherData();
 }
