@@ -24,7 +24,6 @@ import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.model.pojo.DailyTemp;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 import com.gooner10.weatherforecast.presenters.WeatherPresenter;
-import com.gooner10.weatherforecast.services.ApiWeatherService;
 import com.gooner10.weatherforecast.ui.Activity.ForecastDetail;
 import com.gooner10.weatherforecast.ui.Adapter.TodayWeatherAdapter;
 
@@ -39,7 +38,7 @@ import de.greenrobot.event.EventBus;
 public class TodayWeatherFragment extends Fragment implements WeatherContract.view {
 
     private String TAG = TodayWeatherFragment.class.getSimpleName();
-    private WeatherContract.userActions weatherPresenter = new WeatherPresenter(new ApiWeatherService(), this);
+    private WeatherContract.userActions weatherPresenter = new WeatherPresenter(this);
     private List<DailyTemp> dailyTempArrayListArrayList = new ArrayList<>();
     private TodayWeatherAdapter mTodayWeatherAdapter;
     private ForeCastApiModel foreCastApiModel;
