@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.Activity.MainActivity"
+            android:name=".weatherhome.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Activity.ForecastDetail"
+            android:name=".weatherdetail.ForecastDetail"
             android:label="@string/title_activity_forecast_detail"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
