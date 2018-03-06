@@ -1,14 +1,14 @@
 package com.gooner10.weatherforecast.services;
 
 import okhttp3.OkHttpClient;
-import retrofit.GsonConverterFactory;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Service Generator for getting Network request
  */
 
-public class SerrviceGenerator {
+public class ServiceGenerator {
     private static final String API_BASE_URL = "https://api.forecast.io/forecast/203bf0976335ed98863b556ed9f61f79/";
     private static OkHttpClient httpClient = new OkHttpClient();
     private static Retrofit.Builder builder =
