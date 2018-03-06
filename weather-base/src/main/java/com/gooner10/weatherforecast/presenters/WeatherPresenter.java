@@ -2,44 +2,43 @@ package com.gooner10.weatherforecast.presenters;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
-import com.gooner10.weatherforecast.services.ParseResponseCallback;
-import com.gooner10.weatherforecast.services.WeatherService;
+import com.gooner10.weatherforecast.network.ServiceGenerator;
+import com.gooner10.weatherforecast.network.WeatherApiClient;
 
-import org.json.JSONObject;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WeatherPresenter implements WeatherContract.userActions {
     public static final String TAG = WeatherPresenter.class.getSimpleName();
-    private final WeatherService weatherService;
-    private final WeatherContract.view wView;
+    private final WeatherContract.view weatherView;
 
-    public WeatherPresenter(WeatherService weatherService, WeatherContract.view wView) {
-        this.weatherService = weatherService;
-        this.wView = wView;
+    public WeatherPresenter(WeatherContract.view view) {
+        this.weatherView = view;
     }
 
     @Override
     public void loadData() {
-        weatherService.getWeatherData(new ParseResponseCallback() {
+        WeatherApiClient foreCastApiModel = ServiceGenerator.createService(WeatherApiClient.class);
+        Call<ForeCastApiModel> call = foreCastApiModel.getWeatherData("38.968,-76.873");
+        call.enqueue(new Callback<ForeCastApiModel>() {
             @Override
-            public void onSuccess(JSONObject response) {
-                ForeCastApiModel apiModel = parseJSONResponse(response);
-                wView.displayTodayWeather(apiModel);
-                wView.displayWeeklyWeather(apiModel.getDaily().getData());
+            public void onResponse(Call<ForeCastApiModel> call, Response<ForeCastApiModel> response) {
+                Log.i(TAG, "onResponse: " + response.code());
+                if (response.isSuccessful()) {
+                    ForeCastApiModel apiModel = response.body();
+                    weatherView.displayTodayWeather(apiModel);
+                    weatherView.displayWeeklyWeather(apiModel.getDaily().getData());
+                }
             }
 
             @Override
-            public void onError(String errorMessage) {
-                Log.e(TAG, "onError: " + errorMessage);
+            public void onFailure(Call<ForeCastApiModel> call, Throwable t) {
+                Log.e(TAG, "onFailure: ", t);
             }
         });
-    }
-
-    private ForeCastApiModel parseJSONResponse(JSONObject response) {
-        Gson gson = new Gson();
-        return gson.fromJson(response.toString(), ForeCastApiModel.class);
     }
 
     @Override
