@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.weatherdetail.Adapter;
+package com.gooner10.weatherforecast.weatherhome.adapter;
 
 
 import android.support.v4.app.Fragment;

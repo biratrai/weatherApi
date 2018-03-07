@@ -24,7 +24,7 @@ import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.model.pojo.DailyTemp;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 import com.gooner10.weatherforecast.weatherdetail.ForecastDetail;
-import com.gooner10.weatherforecast.weatherdetail.Adapter.TodayWeatherAdapter;
+import com.gooner10.weatherforecast.weatherhome.adapter.TodayWeatherAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

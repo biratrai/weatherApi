@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.gooner10.weatherforecast.R;
 import com.gooner10.weatherforecast.databinding.ActivityMainBinding;
-import com.gooner10.weatherforecast.weatherdetail.Adapter.TabViewAdapter;
+import com.gooner10.weatherforecast.weatherhome.adapter.TabViewAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

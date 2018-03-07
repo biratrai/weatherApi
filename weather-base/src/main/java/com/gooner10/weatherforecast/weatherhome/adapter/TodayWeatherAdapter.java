@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.weatherdetail.Adapter;
+package com.gooner10.weatherforecast.weatherhome.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
