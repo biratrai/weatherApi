@@ -84,7 +84,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
             }
         });
 
-        weatherPresenter.loadData();
+        weatherPresenter.loadData("38.968,-76.873");
 
         // Setting the RecyclerView Layout
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -170,5 +170,10 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
         Log.d(TAG, "displayWeeklyWeather: ");
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), weeklyWeatherDatas);
         recyclerView.setAdapter(mTodayWeatherAdapter);
+    }
+
+    @Override
+    public void loadData(String locationCoordinate) {
+        weatherPresenter.loadData(locationCoordinate);
     }
 }
