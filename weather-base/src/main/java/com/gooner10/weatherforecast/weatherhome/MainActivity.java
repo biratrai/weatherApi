@@ -1,21 +1,23 @@
 package com.gooner10.weatherforecast.weatherhome;
 
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gooner10.weatherforecast.R;
@@ -25,8 +27,8 @@ import com.gooner10.weatherforecast.weatherhome.adapter.TabViewAdapter;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private String LOG_TAG = MainActivity.class.getSimpleName();
-    private final Fragment mTodayWeatherFragment = new TodayWeatherFragment();
+    private String TAG = MainActivity.class.getSimpleName();
+    private final TodayWeatherFragment todayWeatherFragment = new TodayWeatherFragment();
 
     private ViewPager viewPager;
 
@@ -51,8 +53,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "This is a Snackbar in action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showInputDialog();
             }
         });
 
@@ -72,17 +73,39 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    private void showInputDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Get the layout inflater
+        final LayoutInflater inflater = getLayoutInflater();
+        final View view = inflater.inflate(R.layout.user_location_input, null);
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(view)
+                // Add action buttons
+                .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        String latitude = ((TextView) view.findViewById(R.id.latitude)).getText().toString();
+                        String longitude = ((TextView) view.findViewById(R.id.longitude)).getText().toString();
+                        todayWeatherFragment.loadData(latitude+","+longitude);
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     private void setupViewPager() {
         if (viewPager != null) {
-            TabViewAdapter mTabViewAdapter = new TabViewAdapter(getSupportFragmentManager());
-            mTabViewAdapter.addFragment(mTodayWeatherFragment, "Weather");
-            viewPager.setAdapter(mTabViewAdapter);
+            TabViewAdapter tabViewAdapter = new TabViewAdapter(getSupportFragmentManager());
+            tabViewAdapter.addFragment(todayWeatherFragment, "Weather");
+            viewPager.setAdapter(tabViewAdapter);
         }
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
