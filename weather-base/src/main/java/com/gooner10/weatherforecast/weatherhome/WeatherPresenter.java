@@ -2,7 +2,6 @@ package com.gooner10.weatherforecast.weatherhome;
 
 import android.util.Log;
 
-import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 import com.gooner10.weatherforecast.network.ServiceGenerator;
 import com.gooner10.weatherforecast.network.WeatherApiClient;
@@ -29,8 +28,8 @@ public class WeatherPresenter implements WeatherContract.userActions {
                 Log.i(TAG, "onResponse: " + response.code());
                 if (response.isSuccessful()) {
                     ForeCastApiModel apiModel = response.body();
-                    weatherView.displayTodayWeather(apiModel);
-                    weatherView.displayWeeklyWeather(apiModel.getDaily().getData());
+                    weatherView.displayTodaysTemperature(apiModel);
+                    weatherView.displayWeeklyWeatherData(apiModel.getDaily().getData());
                 }
             }
 
@@ -42,7 +41,7 @@ public class WeatherPresenter implements WeatherContract.userActions {
     }
 
     @Override
-    public void clickForDetailTodayWeather() {
+    public void userClicksMoreInfoOnTodaysTemperature() {
 
     }
 }

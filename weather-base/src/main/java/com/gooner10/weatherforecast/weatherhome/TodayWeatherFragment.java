@@ -20,7 +20,6 @@ import com.gooner10.weatherforecast.R;
 import com.gooner10.weatherforecast.databinding.FragmentTodayWeatherBinding;
 import com.gooner10.weatherforecast.eventBus.OnItemClickEvent;
 import com.gooner10.weatherforecast.extras.Constants;
-import com.gooner10.weatherforecast.model.WeatherContract;
 import com.gooner10.weatherforecast.model.pojo.DailyTemp;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 import com.gooner10.weatherforecast.weatherdetail.ForecastDetail;
@@ -149,7 +148,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
 
 
     @Override
-    public void displayTodayWeather(ForeCastApiModel data) {
+    public void displayTodaysTemperature(ForeCastApiModel data) {
         Log.d(TAG, "displayTodayWeather: ");
         this.foreCastApiModel = data;
         // Fetch the Icon String and load Image
@@ -167,7 +166,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
      * Bind the recycler view with the data
      */
     @Override
-    public void displayWeeklyWeather(List<DailyTemp> weeklyWeatherDatas) {
+    public void displayWeeklyWeatherData(List<DailyTemp> weeklyWeatherDatas) {
         Log.d(TAG, "displayWeeklyWeather: ");
         mTodayWeatherAdapter = new TodayWeatherAdapter(getActivity(), weeklyWeatherDatas);
         recyclerView.setAdapter(mTodayWeatherAdapter);
