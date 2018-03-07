@@ -14,7 +14,6 @@
     <dimen name="default_padding">4dp</dimen>
     <dimen name="card_radius">4dp</dimen>
     <dimen name="card_elevation">8dp</dimen>
-    <dimen name="default_margin">8dp</dimen>
 </resources>
 
 
