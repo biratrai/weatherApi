@@ -20,4 +20,7 @@
     <string name="daily_temperature">Daily Temperature</string>
     <string name="location">Location</string>
     <string name="summary">Summary</string>
+    <string name="enter_location">Enter location</string>
+    <string name="enter_longitude">Enter longitude</string>
+    <string name="enter_latitude">Enter latitude</string>
 </resources>
