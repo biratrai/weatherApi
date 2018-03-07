@@ -19,9 +19,9 @@ public class WeatherPresenter implements WeatherContract.userActions {
     }
 
     @Override
-    public void loadData() {
+    public void loadData(String locationCoordinate) {
         WeatherApiClient foreCastApiModel = ServiceGenerator.createService(WeatherApiClient.class);
-        Call<ForeCastApiModel> call = foreCastApiModel.getWeatherData("38.968,-76.873");
+        Call<ForeCastApiModel> call = foreCastApiModel.getWeatherData(locationCoordinate);
         call.enqueue(new Callback<ForeCastApiModel>() {
             @Override
             public void onResponse(Call<ForeCastApiModel> call, Response<ForeCastApiModel> response) {
