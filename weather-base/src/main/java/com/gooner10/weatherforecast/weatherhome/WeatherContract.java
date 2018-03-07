@@ -16,11 +16,13 @@ public interface WeatherContract {
         void displayTodaysTemperature(ForeCastApiModel data);
 
         void displayWeeklyWeatherData(List<DailyTemp> weeklyTemperature);
+
+        void loadData(String locationCoordinate);
     }
 
     interface userActions {
 
-        void loadData();
+        void loadData(String locationCoordinate);
 
         void userClicksMoreInfoOnTodaysTemperature();
 
