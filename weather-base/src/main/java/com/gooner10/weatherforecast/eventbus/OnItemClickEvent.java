@@ -1,4 +1,4 @@
-package com.gooner10.weatherforecast.eventBus;
+package com.gooner10.weatherforecast.eventbus;
 
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
 
