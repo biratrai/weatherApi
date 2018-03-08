@@ -1,5 +1,12 @@
-# WeatherApi
-This is a sample application to use the WeatherApi. It uses the android [Instant app](https://developer.android.com/topic/instant-apps/index.html) feature.
+# WeatherApp
+This is a sample application to use the WeatherApi from [Dark Sky Api](https://darksky.net/dev).
+
+It uses the android [Instant app](https://developer.android.com/topic/instant-apps/index.html) feature.
+
+The application has three modules.
+1. weather-base - Base Feature Module that should be included in both our main app and instant app.
+2. weatherapp-apk - Main app module that has other feature that is not included in the instant app or in the weather-base module.
+3. weather-instantapp - Instant app module which has the link for instant app.
 
 ## Walkthrough of all the function in the project.
 ![weather-app](https://github.com/biratrai/weatherApi/blob/master/images/weather.gif?raw=true)
