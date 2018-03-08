@@ -2,7 +2,7 @@
 This is a sample application to use the WeatherApi. It uses the android [Instant app](https://developer.android.com/topic/instant-apps/index.html) feature.
 
 ## Walkthrough of all the function in the project.
-![weather-app](https://cloud.githubusercontent.com/assets/2682565/16129147/a96abb3e-33d1-11e6-92b4-9c2b9c6c763a.gif)
+![weather-app](https://github.com/biratrai/weatherApi/blob/master/images/weather.gif?raw=true)
 ## External libraries used:
 
 1. compile 'com.jakewharton:butterknife:8.8.1'
