@@ -1,7 +1,9 @@
 # WeatherApi
 This is a sample application to use the WeatherApi. It uses the android [Instant app](https://developer.android.com/topic/instant-apps/index.html) feature.
 
-External libraries used:
+## Walkthrough of all the function in the project.
+![weather-app](https://cloud.githubusercontent.com/assets/2682565/16129147/a96abb3e-33d1-11e6-92b4-9c2b9c6c763a.gif)
+## External libraries used:
 
 1. compile 'com.jakewharton:butterknife:8.8.1'
 2. compile 'com.mcxiaoke.volley:library:1.0.19'
