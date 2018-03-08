@@ -18,11 +18,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gooner10.weatherforecast.R;
 import com.gooner10.weatherforecast.databinding.FragmentTodayWeatherBinding;
-import com.gooner10.weatherforecast.eventBus.OnItemClickEvent;
-import com.gooner10.weatherforecast.extras.Constants;
+import com.gooner10.weatherforecast.eventbus.OnItemClickEvent;
 import com.gooner10.weatherforecast.model.pojo.DailyTemp;
 import com.gooner10.weatherforecast.model.pojo.ForeCastApiModel;
-import com.gooner10.weatherforecast.weatherdetail.ForecastDetail;
+import com.gooner10.weatherforecast.weatherUtils.Constants;
+import com.gooner10.weatherforecast.weatherdetail.ForecastDetailActivity;
 import com.gooner10.weatherforecast.weatherhome.adapter.TodayWeatherAdapter;
 
 import java.util.ArrayList;
@@ -45,6 +45,7 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
     private TextView location;
     private TextView summary;
     private TextView temp;
+    int weatherIconId;
 
     public TodayWeatherFragment() {
         // Required empty public constructor
@@ -65,7 +66,8 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
         binding.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ForecastDetail.class);
+                Intent intent = new Intent(getActivity(), ForecastDetailActivity.class);
+                intent.putExtra("imageid", weatherIconId);
 
                 // Setting the Shared View Transitions
                 ActivityOptionsCompat options = ActivityOptionsCompat.
@@ -97,49 +99,49 @@ public class TodayWeatherFragment extends Fragment implements WeatherContract.vi
 
 
     private void loadImage(String weatherIconString) {
-        int weatherIcon;
+
         Log.d(TAG, "weatherIconString " + weatherIconString);
         switch (weatherIconString) {
             case Constants.CLEAR_DAY:
-                weatherIcon = R.drawable.clear_day;
+                weatherIconId = R.drawable.clear_day;
                 Log.d(TAG, "clear-day " + this.weatherIcon);
                 break;
             case Constants.CLEAR_NIGHT:
-                weatherIcon = R.drawable.clear_night;
+                weatherIconId = R.drawable.clear_night;
                 Log.d(TAG, "clear-night " + this.weatherIcon);
                 break;
             case Constants.RAIN:
-                weatherIcon = R.drawable.rain;
+                weatherIconId = R.drawable.rain;
                 Log.d(TAG, "rain " + this.weatherIcon);
                 break;
             case Constants.SNOW:
-                weatherIcon = R.drawable.snow;
+                weatherIconId = R.drawable.snow;
                 Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.SLEET:
-                weatherIcon = R.drawable.sleet;
+                weatherIconId = R.drawable.sleet;
                 Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.WIND:
-                weatherIcon = R.drawable.wind;
+                weatherIconId = R.drawable.wind;
                 Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.CLOUDY:
-                weatherIcon = R.drawable.cloudy;
+                weatherIconId = R.drawable.cloudy;
                 Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             case Constants.PARTLY_CLOUDY_NIGHT:
-                weatherIcon = R.drawable.partly_cloudy_night;
+                weatherIconId = R.drawable.partly_cloudy_night;
                 Log.d(TAG, "snow " + this.weatherIcon);
                 break;
             default:
-                weatherIcon = R.drawable.undefined;
+                weatherIconId = R.drawable.undefined;
                 Log.d(TAG, "snow " + this.weatherIcon);
                 break;
         }
 
         Glide.with(this)
-                .load(weatherIcon)
+                .load(weatherIconId)
                 .crossFade(30)
                 .placeholder(R.drawable.image_loading)
                 .error(R.drawable.ic_menu_manage)
