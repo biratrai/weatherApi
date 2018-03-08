@@ -19,12 +19,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_latitude"
-        android:inputType="textEmailAddress" />
+        android:inputType="numberDecimal|numberSigned" />
 
     <EditText
         android:id="@+id/longitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
+        android:inputType="numberDecimal|numberSigned"
         android:hint="@string/enter_longitude" />
 </LinearLayout>
