@@ -22,7 +22,6 @@ The application has three modules.
 5. compile 'com.android.support:cardview-v7:27.0.2'
 6. compile 'com.google.code.gson:gson:2.8.2'
 7. compile 'com.github.bumptech.glide:glide:3.5.2'
-8. compile 'jp.wasabeef:recyclerview-animators:2.2.1'
-9. compile 'com.squareup.retrofit2:retrofit:2.3.0'
-10. compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+8. compile 'com.squareup.retrofit2:retrofit:2.3.0'
+9. compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
